@@ -38,5 +38,6 @@ class letter():
         doc = Document(documentclass='letter')
         self.preamble_config(doc)
         self.fill_doc(doc)
-        doc.generate_tex("output/debug_letter")
-        doc.generate_pdf("output/debuge_letter")
+        doc.generate_tex("letter")
+        doc.generate_pdf("letter", clean_tex=False)
+        print("successful!")

@@ -4,8 +4,8 @@ This is a basic document
 from pylatex import Document, Section, Subsection, Command
 from pylatex.utils import italic, NoEscape
 
-class basic:
-    def __init__(self, nme='Basic', author='John Doe', title='Awesome Title', date=True, sect_no='1', pdf_generate=False):
+class basic():
+    def __init__(self, nme='Basic', author='John Doe', title='Awesome Title', date=True, sect_no='1', pdf_generate=True):
         self.nme = nme
         self.author = author
         self.title = title
@@ -27,12 +27,10 @@ class basic:
         doc = self.fill_document(doc)
         doc.preamble.append(Command('title', self.title))
         doc.preamble.append(Command('author', self.author))
-        doc.preamble.append(NoEscape(r'\maketitle'))
+        #doc.preamble.append(NoEscape(r'\maketitle'))
         if self.date:
             doc.preamble.append(Command('date',NoEscape(r'\today')))
         if self.pdf_generate:
-            doc.generate_pdf(self.nme, clean_tex=True)
+            doc.generate_pdf(self.nme, clean_tex=False)
         else:
-            doc.generate_tex("output/"+self.nme)
-
-
+            doc.generate_tex(self.nme)
